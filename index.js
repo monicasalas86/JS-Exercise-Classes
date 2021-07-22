@@ -43,9 +43,9 @@ class Airplane {
 
 class Person {
   constructor(name, age){
-    this.name = name;
-    this.age = age;
-    this.stomach = [];
+    this.name = name,
+    this.age = age,
+    this.stomach = []
   }
   eat(edible){
     if(this.stomach.length < 10){
@@ -77,8 +77,32 @@ console.log('task 1:', monica.toString());
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+    this.model = model,
+    this.milesPerGallon = milesPerGallon,
+    this.tank = 0,
+    this.odometer = 0
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+    return this.tank;
+  }
+  drive(distance){
+    const miles = this.tank * this.milesPerGallon;
+    if(distance <= miles){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+      return this.tank;
+    }else{
+      this.tank = 0;
+      this.odometer = this.odometer + miles;
+      return `I ran out of fuel at ${this.odometer} miles`;
+    }
+  }
 }
+const ford = new Car('ford', 40);
+console.log('task 2:',ford.fill(14));
+console.log('task 2:', ford.drive(140));
 
 /*
   TASK 3
