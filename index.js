@@ -169,7 +169,7 @@ const jane = new Instructor({
   favLanguage: 'javaScript',
   catchPhrase: `Don't forget the homies`
 })
-console.log('task 4', jane);
+console.log('task 4:', jane);
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -186,13 +186,30 @@ console.log('task 4', jane);
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student extends Lambdasian{
-  // constructor(sAttributes){
-  //   super(sAttributes);
-
-  // }
-   
+  constructor(sAttributes){
+    super(sAttributes);
+    this.previousBackground = sAttributes.previousBackground,
+    this.className = sAttributes.className,
+    this.favSubjects = ['JS', 'Node', 'Redux']
+  }
+  listSubjects(){
+    return `Loving ${this.favSubjects}!`;
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
-
+const joe = new Student({
+  name: 'Joe',
+  age: 25,
+  location: 'New York',
+  previousBackground: 'cs',
+  className: 'Web46'
+})
+console.log('task 5:', joe);
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -206,9 +223,30 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
+class ProjectManager extends Instructor {
+  constructor(pAttributes){
+    super(pAttributes);
+    this.gradClassName = pAttributes.gradClassName,
+    this.favInstructor = pAttributes.favInstructor
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
+const jess = new ProjectManager({
+  name: 'Jess',
+  age: 35,
+  location: 'LA',
+  specialty: 'debuggin',
+  favLanguage: 'javaScript',
+  catchPhrase: `Let me help you`,
+  gradClassName: `Web20`,
+  favInstructor: 'Jane'
+})
+console.log('task 6:', jess);
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
